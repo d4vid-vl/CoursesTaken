@@ -88,4 +88,20 @@ println(c) # For more functions, in Julia's console press Tab two times
 
 ### Functions can have multiple dispatches
 methods(muladd) # Check the methods of a function
-@which muladd(3, 4, 5) # Check the method that will be called
+
+### User-defined
+### User-defined functions can be one-liners
+f(x) = x^2 + 2*x + 1
+println(f(3))
+
+### Or multi-liners
+function foo(x)
+    return x^4 + 3*x + 1
+end
+println(foo(3))
+
+### User-defined functions can have multiple dispatches too
+mycos(thet::Float64) = cos(thet)
+mycos(adj, hyp) = adj/hyp
+println(methods(mycos))
+# println(mycos(3)) This will throw an error because the function is not defined for Int64, only for Float64
